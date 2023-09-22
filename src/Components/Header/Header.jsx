@@ -41,7 +41,7 @@ const Header = () => {
 
               <div className={nav ? 'bg-[#e8e9eb] xss:w-[280px] md:w-[250px] fixed top-0 left-0 z-10 h-screen duration-200' : 'fixed left-[-100%] w-[-300px] top-0 duration-300'}>
               <AiOutlineClose className='absolute top-4 right-4 cursor-pointer' 
-                  onClick={()=> setNav(!nav)}  size={30}></AiOutlineClose> 
+                  onClick={()=> setNav(!nav)}  size={30}></AiOutlineClose>  
               </div>
 
     </div>
