@@ -3,7 +3,7 @@ import Header from '../Header/Header'
 
 const Home = () => {
   return (
-    <div className='h-screen bg-gray-100 w-full'>
+    <div>
         <Header />
     </div>
   )
