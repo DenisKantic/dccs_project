@@ -1,11 +1,14 @@
 import {React,useState} from 'react'
+import { Outlet,Link } from 'react-router-dom';
 import {AiOutlineClose} from 'react-icons/ai';
 import {GiHamburgerMenu} from 'react-icons/gi';
 import {FaHome} from 'react-icons/fa';
+import {MdKeyboardArrowDown} from 'react-icons/md';
 
 const Header = () => {
 
     const [nav,setNav] = useState(false);
+    const [subMenu,setSubMenu] = useState(false);
   return (
     <div>
         <header className='w-full fixed justify-between items-center bg-white drop-shadow-2xl
@@ -50,19 +53,27 @@ const Header = () => {
                     <li className='flex flex-row items-center border-l-8 border-[#3f9ac9] w-full 
                                    hover:bg-[#3f9ac9] hover:text-white cursor-pointer'>
                                     <FaHome className='ml-4' size={25}/>
-                                    <p className='text-lg pl-2'>Start</p>
+                                    <Link to="/"><p className='text-lg pl-2' onClick={()=>{setNav(!nav)}}>Start</p></Link>
                                     </li>
                     <li className='flex flex-row items-center mt-4 border-l-8
                                    hover:bg-[#3f9ac9] hover:text-white cursor-pointer'>
                                     <GiHamburgerMenu className='ml-4' size={25}/>
-                                    <p className='text-lg pl-2'>Machine Learning</p>
+                                    <p className='text-lg pl-2 outline-none' onClick={()=>{setSubMenu(!subMenu)}}>Machine Learning</p>
+                                    <MdKeyboardArrowDown size={25} className='flex justify-center items-end w-[50px]'></MdKeyboardArrowDown>
                                     </li>
+                </ul>
+
+                <ul className={ subMenu ? 'flex flex-col mt-4 ml-14' : 'hidden'}>
+                    <li>Example 1</li>
+                    <li>Example 2</li>
+                    <li>Example 3</li>
                 </ul>
 
               <AiOutlineClose className='absolute top-4 right-4 cursor-pointer' 
                   onClick={()=> setNav(!nav)}  size={30}></AiOutlineClose>  
               </div>
 
+            <Outlet></Outlet>
     </div>
   )
 }
