@@ -56,17 +56,27 @@ const Header = () => {
                                     <Link to="/"><p className='text-lg pl-2' onClick={()=>{setNav(!nav)}}>Start</p></Link>
                                     </li>
                     <li className='flex flex-row items-center mt-4 border-l-8
-                                   hover:bg-[#3f9ac9] hover:text-white cursor-pointer'>
+                                   hover:bg-[#3f9ac9] hover:text-white cursor-pointer outline-none'
+                                   onClick={()=>{setSubMenu(!subMenu)}} >
                                     <GiHamburgerMenu className='ml-4' size={25}/>
-                                    <p className='text-lg pl-2 outline-none' onClick={()=>{setSubMenu(!subMenu)}}>Machine Learning</p>
+                                    <p className='text-lg pl-2 outline-none'>Machine Learning</p>
                                     <MdKeyboardArrowDown size={25} className='flex justify-center items-end w-[50px]'></MdKeyboardArrowDown>
                                     </li>
                 </ul>
 
-                <ul className={ subMenu ? 'flex flex-col mt-4 ml-14' : 'hidden'}>
-                    <li>Example 1</li>
-                    <li>Example 2</li>
-                    <li>Example 3</li>
+                <ul className={ subMenu ? 'flex flex-col mt-4 ml-14 cursor-pointer' : 'hidden'}>
+                    <li className='hover:text-[#3f9ac9]'
+                                   onClick={()=>{setNav(!nav)}}>
+                                    Example 1
+                                    </li>
+                    <li className='hover:text-[#3f9ac9]'
+                                onClick={()=>{setNav(!nav)}}>
+                                    Example 2
+                                    </li>
+                    <li className='hover:text-[#3f9ac9]'
+                                   onClick={()=>{setNav(!nav)}}>
+                                    Example 3
+                                    </li>
                 </ul>
 
               <AiOutlineClose className='absolute top-4 right-4 cursor-pointer' 
