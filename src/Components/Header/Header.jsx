@@ -67,7 +67,9 @@ const Header = () => {
                 <ul className={ subMenu ? 'flex flex-col mt-4 ml-14 cursor-pointer' : 'hidden'}>
                     <li className='hover:text-[#3f9ac9]'
                                    onClick={()=>{setNav(!nav)}}>
+                                   <Link to="/Certificate">
                                     Example 1
+                                    </Link>
                                     </li>
                     <li className='hover:text-[#3f9ac9]'
                                 onClick={()=>{setNav(!nav)}}>
