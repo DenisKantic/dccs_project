@@ -1,20 +1,21 @@
 import {React,useState} from 'react'
 import {AiOutlineClose} from 'react-icons/ai';
+import {GiHamburgerMenu} from 'react-icons/gi';
+import {FaHome} from 'react-icons/fa';
 
 const Header = () => {
 
     const [nav,setNav] = useState(false);
   return (
     <div>
-        <header className='w-full justify-between items-center bg-white drop-shadow-2xl
+        <header className='w-full fixed justify-between items-center bg-white drop-shadow-2xl
                            xxs:h-[300px] xxs:flex-none
                            md:h-[60px] md:flex'>
 
-            {/*Left blue part, with text "DCCS Tuzla"*/}
-            <div className='bg-[#3f9ac9] flex flex-col items-center justify-center text-white
-                            md:w-[250px] md:h-full'>
-                <h1 className='text-3xl cursor-pointer' onClick={()=>{setNav(!nav)}}>DCCS Tuzla</h1>
-            </div>
+                <div className='flex h-[60px] items-center justify-center bg-[#3f9ac9] w-[80px]'>
+                    <GiHamburgerMenu className='cursor-pointer' 
+                    onClick={()=> setNav(!nav)}  size={30}></GiHamburgerMenu> 
+                </div>
 
 
             {/* right part of the header, containing language dropdown and user"*/}
@@ -39,7 +40,25 @@ const Header = () => {
 
         </header>
 
-              <div className={nav ? 'bg-[#e8e9eb] xss:w-[280px] md:w-[250px] fixed top-0 left-0 z-10 h-screen duration-200' : 'fixed left-[-100%] w-[-300px] top-0 duration-300'}>
+              <div className={nav ? 'bg-[#e8e9eb] md:w-[280px] relative top-0 left-0 z-10 h-[50vh] duration-200' : 'fixed left-[-100%] w-[-300px] top-0 duration-300'}>
+              <div className='bg-[#3f9ac9] flex flex-col items-center justify-center text-white
+                            md:w-[280px] h-[60px]'>
+                <h1 className='text-3xl cursor-pointer' onClick={()=>{setNav(!nav)}}>DCCS Tuzla</h1>
+            </div>
+
+                <ul className='flex justify-center flex-col pt-10'>
+                    <li className='flex flex-row items-center border-l-8 border-[#3f9ac9] w-full 
+                                   hover:bg-[#3f9ac9] hover:text-white cursor-pointer'>
+                                    <FaHome className='ml-4' size={25}/>
+                                    <p className='text-lg pl-2'>Start</p>
+                                    </li>
+                    <li className='flex flex-row items-center mt-4 border-l-8
+                                   hover:bg-[#3f9ac9] hover:text-white cursor-pointer'>
+                                    <GiHamburgerMenu className='ml-4' size={25}/>
+                                    <p className='text-lg pl-2'>Machine Learning</p>
+                                    </li>
+                </ul>
+
               <AiOutlineClose className='absolute top-4 right-4 cursor-pointer' 
                   onClick={()=> setNav(!nav)}  size={30}></AiOutlineClose>  
               </div>
