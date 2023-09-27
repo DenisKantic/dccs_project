@@ -13,11 +13,11 @@ const Table = () => {
             <th className='w-[25%] p-2 border-2 border-solid border-[#d1d1d1]'>Valid to</th>
             </tr>
 
-            <tr>
-                <td className='w-[25%] p-2 border-2 border-solid border-[#d1d1d1]'>Example 1</td>
-                <td className='w-[25%] p-2 border-2 border-solid border-[#d1d1d1]'>Example 2</td>
-                <td className='w-[25%] p-2 border-2 border-solid border-[#d1d1d1]'>1.1.2023</td>
-                <td className='w-[25%] p-2 border-2 border-solid border-[#d1d1d1]'>12.3.2023</td>
+            <tr className='border-2 border-solid border-[#d1d1d1]'>
+                <td className='w-[25%] p-2'>Example 1</td>
+                <td className='w-[25%] p-2'>Example 2</td>
+                <td className='w-[25%] p-2'>1.1.2023</td>
+                <td className='w-[25%] p-2'>12.3.2023</td>
             </tr>
 
             
