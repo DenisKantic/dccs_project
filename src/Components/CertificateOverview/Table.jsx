@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link, Outlet } from 'react-router-dom'
 import {RiSettings5Fill} from 'react-icons/ri'
 
 const Table = () => {
@@ -8,7 +9,9 @@ const Table = () => {
     
   return (
     <div className='w-full mt-10'>
+        <Link to="/CreateCertification">
         <button className='w-[180px] h-[40px] mb-5 bg-[#c2cc38] text-white'>New certificate</button>
+        </Link>
 
         <table className='w-full text-left'>
             <tr className='h-[50px] border-solid border-2 border-[#d1d1d1]'>
@@ -39,6 +42,8 @@ const Table = () => {
 
             
         </table>
+
+        <Outlet></Outlet>
     </div>
   )
 }
