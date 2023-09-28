@@ -12,6 +12,7 @@ const Certificate = () => {
             <Table />
             </div>
         </main>
+
     </div>
   )
 }
