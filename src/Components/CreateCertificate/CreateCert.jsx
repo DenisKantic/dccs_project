@@ -19,22 +19,22 @@ const CreateCert = () => {
 
                 <form action="#" className='w-[60%]'>
                     <div className='flex flex-col'>
-                        <label htmlFor="">Supplier</label>
-                        <input type="text" className='h-[50px] w-full p-2 border-2 border-[#c7c7c7]' placeholder='Type here'/>
+                        <label htmlFor="" for="supplier">Supplier</label>
+                        <input type="text" name="supplier" className='h-[50px] w-full p-2 border-2 border-[#c7c7c7]' placeholder='Type here'/>
                     </div>
 
                     <div className='flex flex-col mt-10'>
-                        <label htmlFor="">Certificate Type</label>
+                        <label for="certType">Certificate Type</label>
                         <select name="#" id="" className='h-[50px] w-full p-2 border-2 border-[#c7c7c7]' placeholder >
                             <option disabled >Select your option</option>
-                            <option value="#">CCC certificate</option>
-                            <option value="#">Permission of Printing</option>
-                            <option value="#">OHSAS 18001</option>
+                            <option value="ccc">CCC certificate</option>
+                            <option value="permissionOfPrinting">Permission of Printing</option>
+                            <option value="OHSAS">OHSAS 18001</option>
                         </select>
                     </div>
 
                     <div className='flex flex-col mt-10 w-full h-[50px]'>
-                        <label htmlFor="#">Valid from</label>
+                        <label for="startDate">Valid from</label>
                             <DatePicker className='w-full h-[50px] p-2 border-2 border-[#c7c7c7]'
                             onChange={(date) => setStartDate(date)}
                             selected={startDate}
@@ -44,7 +44,7 @@ const CreateCert = () => {
                             placeholderText='Click to select date'
                             />
 
-                        <label htmlFor="" className='mt-10'>Valid to</label>
+                        <label for='endDate' className='mt-10'>Valid to</label>
                             <DatePicker
                             className='h-[50px] w-full p-2 border-2 border-[#c7c7c7]'
                             onChange={(date) => setEndDate(date)}
@@ -55,6 +55,7 @@ const CreateCert = () => {
                             minDate={startDate}
                             placeholderText='Click to select date'
                            />
+                    <button className='w-[300px] h-[60px] p-2 bg-green-300 mx-auto mt-10'>Create Certification</button>
                     </div>
                 </form>
             </div>

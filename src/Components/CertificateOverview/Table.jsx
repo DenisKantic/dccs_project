@@ -9,7 +9,7 @@ const Table = () => {
     
   return (
     <div className='w-full mt-10'>
-        <Link to="/CreateCertification">
+        <Link to="/Certificate/CreateCertification">
         <button className='w-[180px] h-[40px] mb-5 bg-[#c2cc38] text-white'>New certificate</button>
         </Link>
 
