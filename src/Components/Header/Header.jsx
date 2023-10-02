@@ -16,7 +16,7 @@ const Header = () => {
                            md:h-[60px] md:flex'>
 
                 <div className='flex h-[60px] items-center justify-center bg-[#3f9ac9] w-[80px]'>
-                    <GiHamburgerMenu className='cursor-pointer' 
+                    <GiHamburgerMenu className='cursor-pointer text-white' 
                     onClick={()=> setNav(!nav)}  size={30}></GiHamburgerMenu> 
                 </div>
 
@@ -50,21 +50,20 @@ const Header = () => {
             </div>
 
                 <ul className='flex justify-center flex-col pt-10'>
-                    <li className='flex flex-row items-center border-l-8 border-[#3f9ac9] w-full 
-                                   hover:bg-[#3f9ac9] hover:text-white cursor-pointer'>
-                                    <FaHome className='ml-4' size={25}/>
-                                    <Link to="/"><p className='text-lg pl-2' onClick={()=>{setNav(!nav)}}>Start</p></Link>
+                    <li className='flex flex-row items-center border-l-8 border-[#3f9ac9] w-full cursor-pointer'>
+                                    <FaHome className='ml-4 text-[#3f9ac9]' size={25}/>
+                                    <Link to="/"><p className='text-lg pl-2 text-[#3f9ac9]' onClick={()=>{setNav(!nav)}}>Start</p></Link>
                                     </li>
                     <li className='flex flex-row items-center mt-4 border-l-8
                                    hover:bg-[#3f9ac9] hover:text-white cursor-pointer outline-none'
                                    onClick={()=>{setSubMenu(!subMenu)}} >
-                                    <GiHamburgerMenu className='ml-4' size={25}/>
-                                    <p className='text-lg pl-2 outline-none'>Machine Learning</p>
+                                    <GiHamburgerMenu className='ml-4 text-[#193f66]' size={25}/>
+                                    <p className='text-lg pl-2 outline-none text-[#193f66]'>Machine Learning</p>
                                     <MdKeyboardArrowDown size={25} className='flex justify-center items-end w-[50px]'></MdKeyboardArrowDown>
                                     </li>
                 </ul>
 
-                <ul className={ subMenu ? 'flex flex-col mt-4 ml-14 cursor-pointer' : 'hidden'}>
+                <ul className={ subMenu ? 'flex flex-col mt-4 ml-14 cursor-pointer text-[#193f66]' : 'hidden'}>
                     <li className='hover:text-[#3f9ac9]'
                                    onClick={()=>{setNav(!nav)}}>
                                    <Link to="/Certificate">

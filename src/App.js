@@ -10,7 +10,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />}/>
       <Route path="/Certificate" element={<Certificate />} ></Route>
-      <Route path="/CreateCertification" element={<CreateCert />}></Route>
+      <Route path="/Certificate/CreateCertification" element={<CreateCert />}></Route>
     </Routes>
     </BrowserRouter>
   );
