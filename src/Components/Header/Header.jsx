@@ -16,7 +16,7 @@ const Header = () => {
                            md:h-[60px] md:flex'>
 
                 <div className='flex h-[60px] items-center justify-center bg-[#3f9ac9] w-[80px]'>
-                    <GiHamburgerMenu className='cursor-pointer' 
+                    <GiHamburgerMenu className='cursor-pointer text-white' 
                     onClick={()=> setNav(!nav)}  size={30}></GiHamburgerMenu> 
                 </div>
 
