@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import {RiSettings5Fill} from 'react-icons/ri'
+import Dropdown from 'react-bootstrap/Dropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Table = () => {
 
-    const [menu,setMenu] = useState(false);
-
+    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+        <a
+          href="/"
+          ref={ref}
+          onClick={(e) => {
+            e.preventDefault();
+            onClick(e);
+          }}
+        >
+          {children}
+        </a>
+      ));
+    
     
   return (
     <div className='w-full mt-10'>
@@ -15,7 +28,7 @@ const Table = () => {
 
         <table className='w-full text-left'>
             <tr className='h-[50px] border-solid border-2 border-[#d1d1d1]'>
-            <th className='w-[5%] p-2 border-2 border-solid border-[#d1d1d1]'></th>
+            <th className='w-[60px] p-2 border-2 border-solid border-[#d1d1d1]'></th>
             <th className='w-[25%] p-2 border-2 border-solid border-[#d1d1d1]'>Supplier</th>
             <th className='w-[25%] p-2 border-2 border-solid border-[#d1d1d1]'>Certificate Type</th>
             <th className='w-[25%] p-2 border-2 border-solid border-[#d1d1d1]'>Valid from</th>
@@ -23,16 +36,16 @@ const Table = () => {
             </tr>
 
             <tr className='border-2 border-solid border-[#d1d1d1] h-[50px]'>
-                <td className='w-[5%]'>
-                    <RiSettings5Fill 
-                    className='mx-auto cursor-pointer text-[#3a88ba]' 
-                    size={25}
-                    onClick={()=>setMenu(!menu)}
-                    />
-                    <div className={ menu ? 'h-[60px] w-[100px] absolute bg-[#f9f9f9] outline-none p-2 shadow-xl' : 'hidden' }>
-                        <p className='hover:font-bold hover:text-[#3a88ba] cursor-pointer'>Edit</p>
-                        <p className='hover:font-bold hover:text-[#3a88ba] cursor-pointer'>Delete</p>
-                    </div>
+                <td className='w-[60px] flex justify-center items-center h-[50px]'>
+                     <Dropdown>
+                  <Dropdown.Toggle as={CustomToggle}>
+                      <RiSettings5Fill size={25} className='text-[#4086b6]'/>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item>Edit</Dropdown.Item>
+                    <Dropdown.Item>Delete</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
                 </td>
                 <td className='w-[25%] p-2'>Example 1</td>
                 <td className='w-[25%] p-2'>Example 2</td>
