@@ -45,4 +45,21 @@ router.get('/', async (req,res)=>{
     }
 })
 
+router.delete('/:id', async (req,res)=>{
+    try{
+        const { id } = req.params;
+
+        const result = await CertModel.findByIdAndDelete(id);
+
+        if(!result){
+            return res.status(404).json({message: 'Certificate not found'})
+        }
+
+        return res.status(200).send({message: 'Certificate deleted successfulyy'})
+    } catch (error){
+        console.log(error.message)
+
+    }
+})
+
 export default router;
