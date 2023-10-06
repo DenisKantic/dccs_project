@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useParams } from 'react-router-dom'
 import {RiSettings5Fill} from 'react-icons/ri'
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -33,7 +33,22 @@ const Table = () => {
         console.log(error);
       })
     },[])
-    
+
+    const { id } = useParams();
+
+    const deleteCertificate = ()=>{
+
+        axios
+        .delete(`http://localhost:4000/Certificates/${id}`)
+        .then(()=>{
+            console.log("certificate deleted")
+            
+        }) 
+        .catch((error)=>{
+            alert("Error happened. Please contact IT support")
+            console.log(error);
+        })
+    }
     
   return (
     <div className='w-full mt-10'>
@@ -55,14 +70,15 @@ const Table = () => {
           <tbody>
             {cert.map((certs)=>(
             <tr className='border-2 border-solid border-[#d1d1d1] h-[50px]' key={certs._id}>
+              {console.log(certs._id)}
                 <td className='w-[60px] flex justify-center items-center h-[50px]'>
                      <Dropdown>
                   <Dropdown.Toggle as={CustomToggle}>
                       <RiSettings5Fill size={25} className='text-[#4086b6]'/>
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item key={certs._id}>Edit</Dropdown.Item>
-                    <Dropdown.Item key={certs._id}>Delete</Dropdown.Item>
+                  <Dropdown.Item>Edit</Dropdown.Item>
+                    <Dropdown.Item><Link to={`/Certificates/Delete/${certs._id}`}>Delete</Link></Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
                 </td>
