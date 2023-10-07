@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Outlet, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {RiSettings5Fill} from 'react-icons/ri'
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Table = () => {
 
-    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => ( // Boostrap custom dropdown, function from the official docs
         <a
           href="/"
           ref={ref}
@@ -20,7 +20,7 @@ const Table = () => {
         </a>
       ));
 
-    const [cert,setCert] = useState([])
+    const [cert,setCert] = useState([]) // for storing data from .get request and for displaying it 
 
     useEffect(()=>{
       axios
@@ -36,7 +36,7 @@ const Table = () => {
     
   return (
     <div className='w-full mt-10'>
-        <Link to="/Certificates/CreateCertification">
+        <Link to="/Certificates/CreateCertification"> {/*redirect to CreateCertificaton component for creating new Certificate*/}
         <button className='w-[180px] h-[40px] mb-5 bg-[#c2cc38] text-white'>New certificate</button>
         </Link>
 
@@ -55,7 +55,7 @@ const Table = () => {
             {cert.map((certs)=>(
             <tr className='border-2 border-solid border-[#d1d1d1] h-[50px]' key={certs._id}>
                 <td className='w-[60px] flex justify-center items-center h-[50px]'>
-                     <Dropdown>
+                     <Dropdown> {/*START of Bootstrap dropdown */}
                   <Dropdown.Toggle as={CustomToggle}>
                       <RiSettings5Fill size={25} className='text-[#4086b6]'/>
                   </Dropdown.Toggle>
@@ -63,7 +63,7 @@ const Table = () => {
                   <Dropdown.Item>Edit</Dropdown.Item>
                     <Dropdown.Item><Link to={`/Certificates/Delete/${certs._id}`}>Delete</Link></Dropdown.Item>
                   </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown> {/*END of Bootstrap dropdown */}
                 </td>
                 <td className='w-[25%] p-2'>{certs.supplier}</td>
                 <td className='w-[25%] p-2'>{certs.certificateType}</td>
@@ -75,8 +75,6 @@ const Table = () => {
 
             
         </table>
-
-        <Outlet></Outlet>
     </div>
   )
 }

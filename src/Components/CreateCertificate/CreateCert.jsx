@@ -48,16 +48,22 @@ const CreateCert = () => {
         
     }
 
+    const getSupplier = () =>{
+
+    }
+
     axios
     .post('http://localhost:4000/Certificates', data)
     .then(()=>{
         navigate('/Certificates')
     })
     .catch((error)=>{
-        alert("an error happened.")
+        alert("Error, something is wrong. Please check your input field and try again");
     })
 
   }
+
+
 
 
   return (
@@ -86,19 +92,21 @@ const CreateCert = () => {
                             className='w-full h-full border-[1px]' 
                             onChange={(e)=> setSupplier(e.target.value)}
                             />
-                            <span className='h-full w-[50px] box-border bg-slate-100 border-[1px] cursor-pointer flex justify-center items-center'><BiSearch size={25}/></span>
-                            <span className='h-full w-[50px] bg-slate-100 border-[1px] cursor-pointer flex justify-center items-center'><IoClose size={30} /></span>
+                            <button className='h-full w-[50px] box-border bg-slate-100 border-[1px] cursor-pointer flex justify-center items-center'><BiSearch size={25}/></button>
+                            <button className='h-full w-[50px] bg-slate-100 border-[1px] cursor-pointer flex justify-center items-center'><IoClose onClick={()=>setSupplier("")} size={30} /></button>
                         </div>
                     </div>
 
                     <div className='flex flex-col mt-10'>
                         <label htmlFor="certType">Certificate Type</label>
-                        <select className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]' onChange={(e)=>setValue(e.target.value)}>
+                        <select className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]' onClick={(e)=>setValue(e.target.value)}>
+                            <option disabled>Choose your option</option>
                             {options.map((option)=>{
                                 return (
-                                <option key={option.id} value={option.value}>{option.type}</option>
+                                    <option key={option.id} value={option.value}>{option.type}</option>
                                 )
                             })}
+                            {console.log(value)}
                         </select>
                     </div>
 
