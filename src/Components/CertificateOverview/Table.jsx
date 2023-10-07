@@ -33,22 +33,6 @@ const Table = () => {
         console.log(error);
       })
     },[])
-
-    const { id } = useParams();
-
-    const deleteCertificate = ()=>{
-
-        axios
-        .delete(`http://localhost:4000/Certificates/${id}`)
-        .then(()=>{
-            console.log("certificate deleted")
-            
-        }) 
-        .catch((error)=>{
-            alert("Error happened. Please contact IT support")
-            console.log(error);
-        })
-    }
     
   return (
     <div className='w-full mt-10'>
@@ -70,7 +54,6 @@ const Table = () => {
           <tbody>
             {cert.map((certs)=>(
             <tr className='border-2 border-solid border-[#d1d1d1] h-[50px]' key={certs._id}>
-              {console.log(certs._id)}
                 <td className='w-[60px] flex justify-center items-center h-[50px]'>
                      <Dropdown>
                   <Dropdown.Toggle as={CustomToggle}>
