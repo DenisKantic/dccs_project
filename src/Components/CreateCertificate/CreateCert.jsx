@@ -11,42 +11,44 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateCert = () => {
 
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date().toLocaleDateString("de-DE"));
   const [supplier, setSupplier] = useState('');
-  const [value, setValue] = useState('')
-  const [certificateType, setCertificate] = useState('')
-  const [validFrom, setValidFrom] = useState('')
-  const [validTo, setValidTo] = useState('')
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [value, setValue] = useState('');
   const navigate = useNavigate();
+
 
   const options = [
     {
+        id: 1,
         type: "CCC Certificate",
         value: 'CCC Certificate'
     }, 
     {
+        id: 2,
         type: "Permission of Printing",
         value: "Permission of Printing"
     },
     {
+        id: 3,
         type: "OHSAS 18001",
         value: "OHSAS 18001"
     }
   ];
 
-  const handleSelect = (e)=>{
-    setValue(e.target.value);
-    console.log(setValue(e.target.value))
-  }
-  
+
+
   const handleSaveCert = () =>{
 
     const data = {
         supplier: supplier,
         certificateType: value,
-        validFrom: 2012,
-        validTo: 2023
+        validFrom: startDate.toLocaleDateString("de-DE"),
+        validTo: endDate.toLocaleDateString("de-DE")
+        
     }
+
     axios
     .post('http://localhost:4000/Certificates', data)
     .then(()=>{
@@ -54,7 +56,6 @@ const CreateCert = () => {
     })
     .catch((error)=>{
         alert("an error happened.")
-        console.log(supplier, certificateType)
     })
 
   }
@@ -96,7 +97,7 @@ const CreateCert = () => {
                         <select className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]' onChange={(e)=>setValue(e.target.value)}>
                             {options.map((option)=>{
                                 return (
-                                <option value={option.value}>{option.type}</option>
+                                <option key={option.id} value={option.value}>{option.type}</option>
                                 )
                             })}
                         </select>
@@ -105,21 +106,21 @@ const CreateCert = () => {
                     <div className='flex flex-col mt-10 w-full h-[50px]'>
                         <label htmlFor="startDate">Valid from</label>
                         <DatePicker
-                        className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]'
-                        selected={date}
-                        onChange={(date) => setDate(date)}
-                        placeholderText='Click to select date'
-                        />
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        selectsStart
+                        startDate={startDate}
+                        endDate={endDate}
+                    />
 
                     <label htmlFor='endDate' className='mt-10'>Valid to</label>
                             <DatePicker
-                            className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]'
+                            selected={endDate}
+                            onChange={(date) => setEndDate(date)}
                             selectsEnd
-                            selected={date}
-                            startDate={""}
-                            endDate={""}
-                            minDate={""}
-                            placeholderText='Click to select date'
+                            startDate={startDate}
+                            endDate={endDate}
+                            minDate={startDate}
                            />
 
                     <button className='w-[300px] h-[60px] p-2 bg-green-300 mx-auto mt-10' onClick={handleSaveCert}>Create Certification</button>

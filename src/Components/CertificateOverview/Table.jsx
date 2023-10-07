@@ -70,7 +70,6 @@ const Table = () => {
           <tbody>
             {cert.map((certs)=>(
             <tr className='border-2 border-solid border-[#d1d1d1] h-[50px]' key={certs._id}>
-              {console.log(certs._id)}
                 <td className='w-[60px] flex justify-center items-center h-[50px]'>
                      <Dropdown>
                   <Dropdown.Toggle as={CustomToggle}>
