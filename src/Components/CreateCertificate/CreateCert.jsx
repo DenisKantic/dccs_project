@@ -76,7 +76,9 @@ const CreateCert = () => {
                 <h1>Create Certification</h1>
 
                 
-                <div className='w-[60%] mb-4'>
+                <div className='w-[60%] pt-10'>
+
+                <div className='w-full mb-4'>
                         <label>Supplier</label>
                         <div className='flex items-center h-[50px]'>
                             <input 
@@ -106,25 +108,25 @@ const CreateCert = () => {
                         className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]'
                         selected={date}
                         onChange={(date) => setDate(date)}
+                        placeholderText='Click to select date'
                         />
 
-                       {/*} <label htmlFor='endDate' className='mt-10'>Valid to</label>
+                    <label htmlFor='endDate' className='mt-10'>Valid to</label>
                             <DatePicker
                             className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]'
-                            onChange={(date) => setValidTo(date)}
                             selectsEnd
-                            selected={endDate}
-                            startDate={startDate}
-                            endDate={endDate}
-                            minDate={startDate}
+                            selected={date}
+                            startDate={""}
+                            endDate={""}
+                            minDate={""}
                             placeholderText='Click to select date'
                            />
-                           {()=>console.log(startDate)}
 
-  */}
                     <button className='w-[300px] h-[60px] p-2 bg-green-300 mx-auto mt-10' onClick={handleSaveCert}>Create Certification</button>
                     </div>
+                 </div>
             </div>
+
 
         </main>
     </div>
