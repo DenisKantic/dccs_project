@@ -60,7 +60,7 @@ const Table = () => {
                       <RiSettings5Fill size={25} className='text-[#4086b6]'/>
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                  <Dropdown.Item>Edit</Dropdown.Item>
+                  <Dropdown.Item><Link to={`/Certificates/EditCertificate/${certs._id}`}>Edit</Link></Dropdown.Item>
                     <Dropdown.Item><Link to={`/Certificates/Delete/${certs._id}`}>Delete</Link></Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown> {/*END of Bootstrap dropdown */}
