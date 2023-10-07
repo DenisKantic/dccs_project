@@ -11,30 +11,50 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateCert = () => {
 
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [date, setDate] = useState(new Date());
   const [supplier, setSupplier] = useState('');
+  const [value, setValue] = useState('')
   const [certificateType, setCertificate] = useState('')
   const [validFrom, setValidFrom] = useState('')
   const [validTo, setValidTo] = useState('')
   const navigate = useNavigate();
+
+  const options = [
+    {
+        type: "CCC Certificate",
+        value: 'CCC Certificate'
+    }, 
+    {
+        type: "Permission of Printing",
+        value: "Permission of Printing"
+    },
+    {
+        type: "OHSAS 18001",
+        value: "OHSAS 18001"
+    }
+  ];
+
+  const handleSelect = (e)=>{
+    setValue(e.target.value);
+    console.log(setValue(e.target.value))
+  }
   
   const handleSaveCert = () =>{
 
-
     const data = {
-        supplier,
-        certificateType,
-        validFrom,
-        validTo
+        supplier: supplier,
+        certificateType: value,
+        validFrom: 2012,
+        validTo: 2023
     }
     axios
     .post('http://localhost:4000/Certificates', data)
     .then(()=>{
-        navigate('/')
+        navigate('/Certificates')
     })
     .catch((error)=>{
         alert("an error happened.")
+        console.log(supplier, certificateType)
     })
 
   }
@@ -62,7 +82,7 @@ const CreateCert = () => {
                             <input 
                             type="text" 
                             className='w-full h-full border-[1px]' 
-                            value={supplier}
+                            onChange={(e)=> setSupplier(e.target.value)}
                             />
                             <span className='h-full w-[50px] box-border bg-slate-100 border-[1px] cursor-pointer flex justify-center items-center'><BiSearch size={25}/></span>
                             <span className='h-full w-[50px] bg-slate-100 border-[1px] cursor-pointer flex justify-center items-center'><IoClose size={30} /></span>
@@ -71,26 +91,24 @@ const CreateCert = () => {
 
                     <div className='flex flex-col mt-10'>
                         <label htmlFor="certType">Certificate Type</label>
-                        <select name="#" id="" className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]'>
-                            <option disabled >Select your option</option>
-                            <option value={certificateType} onChange={(e)=>setCertificate(e.target.value)}>CCC certificate</option>
-                            <option value={certificateType} onChange={(e)=>setCertificate(e.target.value)}>Permission of Printing</option>
-                            <option value={certificateType} onChange={(e)=>setCertificate(e.target.value)}>OHSAS 18001</option>
+                        <select className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]' onChange={(e)=>setValue(e.target.value)}>
+                            {options.map((option)=>{
+                                return (
+                                <option value={option.value}>{option.type}</option>
+                                )
+                            })}
                         </select>
                     </div>
 
                     <div className='flex flex-col mt-10 w-full h-[50px]'>
                         <label htmlFor="startDate">Valid from</label>
-                            <DatePicker className='w-full h-[50px] p-2  border-[1px] border-[#c7c7c7]'
-                            onChange={(date)=>setValidFrom(date)}
-                            selected={validFrom}
-                            selectsStart
-                            startDate={validFrom}
-                            endDate={validTo}
-                            placeholderText='Click to select date'
-                            /> 
+                        <DatePicker
+                        className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]'
+                        selected={date}
+                        onChange={(date) => setDate(date)}
+                        />
 
-                        <label htmlFor='endDate' className='mt-10'>Valid to</label>
+                       {/*} <label htmlFor='endDate' className='mt-10'>Valid to</label>
                             <DatePicker
                             className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]'
                             onChange={(date) => setValidTo(date)}
@@ -101,7 +119,10 @@ const CreateCert = () => {
                             minDate={startDate}
                             placeholderText='Click to select date'
                            />
-                    <button className='w-[300px] h-[60px] p-2 bg-green-300 mx-auto mt-10' onClick={handleSaveCert}>Create Certification{console.log(startDate)}</button>
+                           {()=>console.log(startDate)}
+
+  */}
+                    <button className='w-[300px] h-[60px] p-2 bg-green-300 mx-auto mt-10' onClick={handleSaveCert}>Create Certification</button>
                     </div>
             </div>
 
