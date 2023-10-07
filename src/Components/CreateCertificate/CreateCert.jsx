@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateCert = () => {
 
-  const [date, setDate] = useState(new Date().toLocaleDateString("de-DE"));
   const [supplier, setSupplier] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -44,8 +43,8 @@ const CreateCert = () => {
     const data = {
         supplier: supplier,
         certificateType: value,
-        validFrom: startDate.toLocaleDateString("de-DE"),
-        validTo: endDate.toLocaleDateString("de-DE")
+        validFrom: startDate.toLocaleDateString("de-DE"), // converts given Date to string in European format dd/mm/yyyy
+        validTo: endDate.toLocaleDateString("de-DE")  // converts given Date to string in European format dd/mm/yyyy
         
     }
 
