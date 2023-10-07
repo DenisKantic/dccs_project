@@ -64,7 +64,7 @@ const CreateCert = () => {
     <div className='flex flex-2'>
         <Header />
         <main  className='h-screen w-full p-10'>
-        <Link to='/Certificate'>
+        <Link to='/Certificates'>
         <BsArrowLeftSquareFill  
         title='Go Back'
         className='mt-10 text-[#3f9ac9] cursor-pointer' 
