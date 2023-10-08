@@ -85,6 +85,7 @@ const CreateCert = () => {
                         <div className='flex items-center h-[50px]'>
                             <input 
                             type="text" 
+                            value={supplier}
                             className='w-full h-full border-[1px]' 
                             onChange={(e)=> setSupplier(e.target.value)}
                             />
