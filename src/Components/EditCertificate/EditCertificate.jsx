@@ -3,7 +3,6 @@ import {Link, useParams} from 'react-router-dom'
 import Header from '../Header/Header'
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import {BsArrowLeftSquareFill} from 'react-icons/bs'
 import {BiSearch} from 'react-icons/bi';
 import {IoClose} from 'react-icons/io5';
 import axios from 'axios'
