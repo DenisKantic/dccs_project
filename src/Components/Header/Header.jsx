@@ -4,14 +4,14 @@ import {AiOutlineClose} from 'react-icons/ai';
 import {GiHamburgerMenu} from 'react-icons/gi';
 import {FaHome} from 'react-icons/fa';
 import {MdKeyboardArrowDown} from 'react-icons/md';
-import LanguageSwitcher from './LanguageSwitcher';
-import { useTranslation } from "react-i18next";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import translationEN from "../../locales/en/translation.json";
-import translationBHS from "../../locales/bhs/translation.json";;
+import LanguageSwitcher from './LanguageSwitcher'; // for language switch (english or bosnian)
+import { useTranslation } from "react-i18next"; // for language switch (english or bosnian)
+import i18n from "i18next"; // for language switch (english or bosnian)
+import { initReactI18next } from "react-i18next"; // for language switch (english or bosnian)
+import translationEN from "../../locales/en/translation.json"; // for language switch (english or bosnian)
+import translationBHS from "../../locales/bhs/translation.json";; // for language switch (english or bosnian)
 
-const resources = {
+const resources = { // from official docs resources for language Switch
   en: {
     translation: translationEN,
   },
@@ -20,7 +20,7 @@ const resources = {
   }
 }
 
-i18n.use(initReactI18next).init({
+i18n.use(initReactI18next).init({ // from official docs resources for language Switch
   resources,
   lng: "en",
   fallbackLng: "en",
@@ -32,8 +32,12 @@ i18n.use(initReactI18next).init({
 const Header = () => {
 
     const { t } =useTranslation();
-    const [nav,setNav] = useState(false);
-    const [subMenu,setSubMenu] = useState(false);
+     /* from official docs resources for language Switch
+    whenever you see in this component for example {t("someText")}, that is for 
+    language switch, if you click for example bosnian, it will show that words in bosnian language */
+    
+    const [nav,setNav] = useState(false); // for displaying sidebar on left side
+    const [subMenu,setSubMenu] = useState(false); // for displaying submenu (example 1,example 2...) inside of sidebar on left side
   return (
     <div>
         <header className='w-full fixed justify-between items-center bg-white drop-shadow-2xl

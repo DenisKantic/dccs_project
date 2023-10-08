@@ -1,5 +1,9 @@
 import mongoose from 'mongoose';
 
+/* 
+basic Schema for creating certificate
+All fields are String and REQUIRED, so user can't create/edit certificate until all fields are true (has value)
+*/
 const CertificateSchema = mongoose.Schema(
     {
         supplier:{

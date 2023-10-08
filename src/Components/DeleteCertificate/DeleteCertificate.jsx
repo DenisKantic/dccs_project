@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
-import { useTranslation } from "react-i18next";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import translationEN from "../../locales/en/translation.json";
-import translationBHS from "../../locales/bhs/translation.json";import Spinner from '../Spinner/Spinner';
+import { useTranslation } from "react-i18next"; // for language switch (english or bosnian)
+import i18n from "i18next"; // for language switch (english or bosnian)
+import { initReactI18next } from "react-i18next"; // for language switch (english or bosnian)
+import translationEN from "../../locales/en/translation.json"; // for language switch (english or bosnian)
+import translationBHS from "../../locales/bhs/translation.json"; // for language switch (english or bosnian)
+import Spinner from '../Spinner/Spinner'; // spinner component
 ;
 
-const resources = {
+const resources = { // for language switch (english or bosnian)
   en: {
     translation: translationEN,
   },
@@ -17,7 +18,7 @@ const resources = {
   }
 }
 
-i18n.use(initReactI18next).init({
+i18n.use(initReactI18next).init({ // for language switch (english or bosnian)
   resources,
   lng: "en",
   fallbackLng: "en",
@@ -30,8 +31,11 @@ const DeleteCertificate = () => {
 
     const { id } = useParams();
     const { t } = useTranslation()
-    const [loading,setLoading] = useState(false);
-    const navigate = useNavigate();
+     /* from official docs resources for language Switch
+    whenever you see in this component for example {t("someText")}, that is for 
+    language switch, if you click for example bosnian, it will show that words in bosnian language */
+    const [loading,setLoading] = useState(false); // spinner 
+    const navigate = useNavigate(); // for redirect after delete method 
 
     const deleteCertificate = ()=>{
 
