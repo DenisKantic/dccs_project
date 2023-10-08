@@ -8,6 +8,29 @@ import {BiSearch} from 'react-icons/bi';
 import {IoClose} from 'react-icons/io5';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import translationEN from "../../locales/en/translation.json";
+import translationBHS from "../../locales/bhs/translation.json";;
+
+const resources = {
+  en: {
+    translation: translationEN,
+  },
+  bhs: {
+    translation: translationBHS,
+  }
+}
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "en",
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 const CreateCert = () => {
 
@@ -16,6 +39,8 @@ const CreateCert = () => {
   const [endDate, setEndDate] = useState(new Date());
   const [value, setValue] = useState('');
   const navigate = useNavigate();
+
+  const { t } = useTranslation()
 
 
   const options = [
@@ -68,13 +93,13 @@ const CreateCert = () => {
         <main  className='h-screen w-full p-10'>
 
             <div className='mt-10 flex flex-col justify-center items-center'>
-                <h1 className='text-4xl'>Create Certification</h1>
+                <h1 className='text-4xl'>{t("create_certificate")}</h1>
 
                 
                 <div className='w-[60%] pt-10'>
 
                 <div className='w-full mb-4'>
-                        <label>Supplier</label>
+                        <label>{t("supplier")}</label>
                         <div className='flex items-center h-[50px]'>
                             <input 
                             type="text" 
@@ -88,7 +113,7 @@ const CreateCert = () => {
                     </div>
 
                     <div className='flex flex-col mt-10'>
-                        <label htmlFor="certType">Certificate Type</label>
+                        <label htmlFor="certType">{t("certificate_type")}</label>
                         <select className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]' onClick={(e)=>setValue(e.target.value)}>
                             <option disabled>Choose your option</option>
                             {options.map((option)=>{
@@ -101,7 +126,7 @@ const CreateCert = () => {
                     </div>
 
                     <div className='flex flex-col mt-10 w-full h-[50px]'>
-                        <label htmlFor="startDate">Valid from</label>
+                        <label htmlFor="startDate">{t("valid_from")}</label>
                         <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
@@ -110,7 +135,7 @@ const CreateCert = () => {
                         endDate={endDate}
                     />
 
-                    <label htmlFor='endDate' className='mt-10'>Valid to</label>
+                    <label htmlFor='endDate' className='mt-10'>{t("valid_to")}</label>
                             <DatePicker
                             selected={endDate}
                             onChange={(date) => setEndDate(date)}
@@ -121,8 +146,8 @@ const CreateCert = () => {
                            />
 
                     <div className='mx-auto'>
-                    <button className='w-[300px] h-[60px] p-2 bg-[#3f9ac9] text-xl text-white mx-auto mt-10' onClick={handleSaveCert}>Create Certification</button>
-                    <Link to='/Certificates'><button className='w-[300px] h-[60px] p-2 bg-red-400 text-xl text-white mx-auto mt-10'>Cancel</button></Link>
+                    <button className='w-[300px] h-[60px] p-2 bg-[#3f9ac9] text-xl text-white mx-auto mt-10' onClick={handleSaveCert}>{t("create_certificate")}</button>
+                    <Link to='/Certificates'><button className='w-[300px] h-[60px] p-2 bg-red-400 text-xl text-white mx-auto mt-10'>{t("cancel")}</button></Link>
                     </div>
                     </div>
                  </div>

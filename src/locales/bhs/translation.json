@@ -1,0 +1,23 @@
+{
+    "supplier": "Dobavljac",
+    "certificate_type": "Tip certifikata",
+    "valid_from": "Vrijedi od",
+    "valid_to": "Vrijedi do",
+    "edit_certificate": "Uredi Certifikat",
+    "create_certificate": "Kreiraj Certifikat",
+    "certificate_overview": "Pregled Certifikata",
+    "cancel": "Odustani",
+    "previous_selected": "Vas prijasnji odabir je bio: ",
+    "previous_option": "Vas prijasnji odabir je bio: ",
+    "en": "Engleski",
+    "bhs": "Bosanski",
+    "language": "Jezik",
+    "user": "Korisnik",
+    "edit": "Uredi",
+    "delete": "Izbrisi",
+    "delete_msg": "Da li ste sigurni da zelite obrisati?",
+    "yes": "Da",
+    "ml": "Masinsko Ucenje",
+    "example": "Primjer"
+    
+}
