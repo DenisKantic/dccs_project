@@ -1,20 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams} from 'react-router-dom'
 import Header from '../Header/Header'
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-import {BiSearch} from 'react-icons/bi';
-import {IoClose} from 'react-icons/io5';
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from "react-i18next";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import translationEN from "../../locales/en/translation.json";
-import translationBHS from "../../locales/bhs/translation.json";
-import Spinner from '../Spinner/Spinner';
+import DatePicker from 'react-datepicker'; // date picker for selecting date 
+import "react-datepicker/dist/react-datepicker.css"; //bootstrap css dropdown
+import {BiSearch} from 'react-icons/bi'; // react icons
+import {IoClose} from 'react-icons/io5'; // react icons 
+import axios from 'axios' // for getting data from database 
+import { useNavigate } from 'react-router-dom'; // for redirecting to another component after put method is done
+import { useTranslation } from "react-i18next"; // for language switch (english or bosnian)
+import i18n from "i18next"; // for language switch (english or bosnian)
+import { initReactI18next } from "react-i18next"; // for language switch (english or bosnian)
+import translationEN from "../../locales/en/translation.json"; // for language switch (english or bosnian)
+import translationBHS from "../../locales/bhs/translation.json"; // for language switch (english or bosnian)
+import Spinner from '../Spinner/Spinner'; // spinner which spinns before getting data from database
 
-const resources = {
+const resources = { // from official docs resources for language Switch
   en: {
     translation: translationEN,
   },
@@ -23,7 +23,7 @@ const resources = {
   }
 }
 
-i18n.use(initReactI18next).init({
+i18n.use(initReactI18next).init({ // from official docs resources for language Switch
   resources,
   lng: "en",
   fallbackLng: "en",
@@ -34,20 +34,23 @@ i18n.use(initReactI18next).init({
 
 const EditCertificate = () => { 
 
-    const { t } = useTranslation();
-    const [loading,setLoading] = useState(false);
-    const [supplier, setSupplier] = useState('');
-    const [validFrom, setValidFrom] = useState(new Date());
-    const [validTo, setValidTo] = useState(new Date());
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(validTo);
-    const [certificateType, setCertificateType] = useState('');
-    const navigate = useNavigate();
+    const { t } = useTranslation(); 
+     /* from official docs resources for language Switch
+    whenever you see in this component for example {t("someText")}, that is for 
+    language switch, if you click for example bosnian, it will show that words in bosnian language */
+    const [loading,setLoading] = useState(false); // spinner 
+    const [supplier, setSupplier] = useState(''); 
+    const [validFrom, setValidFrom] = useState(new Date()); // getting validFrom date from database
+    const [validTo, setValidTo] = useState(new Date()); // getting validTo date from database
+    const [startDate, setStartDate] = useState(new Date()); // new Date for Date component
+    const [endDate, setEndDate] = useState(new Date()); // new Date for Date component
+    const [certificateType, setCertificateType] = useState(''); 
+    const navigate = useNavigate(); // for redirecting to another component after put method is done
 
 
-    const { id } = useParams();
+    const { id } = useParams(); 
 
-    useEffect(()=>{
+    useEffect(()=>{ //getting specific certificate by ID and setting data in useState for displaying it
       setLoading(true)
         axios
         .get(`http://localhost:4000/Certificates/${id}`)
@@ -64,7 +67,7 @@ const EditCertificate = () => {
         })
       },[])
 
-      const handleEditCertificate = () =>{
+      const handleEditCertificate = () =>{ // submiting new values into database
 
         const data = {
             supplier,
@@ -88,7 +91,7 @@ const EditCertificate = () => {
         })
       }
 
-      const options = [
+      const options = [ // options for <select></select> tag 
         {
             id: 1,
             type: "CCC Certificate",
@@ -135,7 +138,10 @@ const EditCertificate = () => {
                     <div className='flex flex-col mt-10'>
                         <label htmlFor="certType">{t("certificate_type")}</label>
                         <select className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]' onClick={(e)=>setCertificateType(e.target.value)}>
-                            <option disabled>{(`${t("previous_option")} ${certificateType}`)}</option>
+                            <option disabled>{(`${t("previous_option")} ${certificateType}`)}
+                            {/* displaying previously selected option, because I don't know how to set it directly 
+                            in select to display already picked option */}
+                            </option> 
                             {options.map((option)=>{
                                 return (
                                     <option key={option.id} value={option.value}>{option.value}</option>
@@ -148,7 +154,10 @@ const EditCertificate = () => {
                     <div className='flex flex-col mt-10 w-full h-[50px]'>
                         <label htmlFor="startDate">{t("valid_from")} 
                         <br />
-                        {(`${t("previous_selected")} ${validFrom}`)}</label>
+                        {(`${t("previous_selected")} ${validFrom}`)}
+                        {/*displaying previously selected date because I had problems in Date component with setting up
+                        startDate as already selected Date. I did this as temporary fix */}
+                        </label>
                         <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
@@ -157,12 +166,12 @@ const EditCertificate = () => {
                         endDate={endDate}
                         className='w-full border-[1px] h-[50px] p-2'
                     />
-                    {console.log("start Date is:", startDate, "validFRom is", validFrom)
-                    }
 
                     <label htmlFor='endDate' className='mt-10'>{t("valid_to")} 
                         <br />
                         {(`${t("previous_selected")} ${validTo}`)}
+                         {/*displaying previously selected date because I had problems in Date component with setting up
+                        startDate as already selected Date. I did this as temporary fix */}
                     </label>
                             <DatePicker
                             selected={endDate}
@@ -174,9 +183,10 @@ const EditCertificate = () => {
                             className='w-full border-[1px] h-[50px] p-2'
                            />
                            <div className='mx-auto'>
-                    <button className='w-[300px] h-[60px] p-2 bg-[#3f9ac9] text-xl text-white mx-auto mt-10' onClick={handleEditCertificate}>{t("edit_certificate")}</button>
-                    <Link to='/Certificates'><button className='w-[300px] h-[60px] p-2 bg-red-400 text-xl text-white mx-auto mt-10'>{t("cancel")}</button></Link>
-                    </div>
+
+                      <button className='w-[300px] h-[60px] p-2 bg-[#3f9ac9] text-xl text-white mx-auto mt-10' onClick={handleEditCertificate}>{t("edit_certificate")}</button>
+                      <Link to='/Certificates'><button className='w-[300px] h-[60px] p-2 bg-red-400 text-xl text-white mx-auto mt-10'>{t("cancel")}</button></Link>
+                      </div>
                            </div>
                   
                     </div>

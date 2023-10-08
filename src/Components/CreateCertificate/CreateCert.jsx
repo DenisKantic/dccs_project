@@ -1,20 +1,20 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import Header from '../Header/Header'
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+import Header from '../Header/Header' // header (navigation) component
+import DatePicker from 'react-datepicker'; // date picker component for date 
+import "react-datepicker/dist/react-datepicker.css"; // date picker component css
 import {BiSearch} from 'react-icons/bi';
 import {IoClose} from 'react-icons/io5';
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from "react-i18next";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import translationEN from "../../locales/en/translation.json";
-import translationBHS from "../../locales/bhs/translation.json";
-import Spinner from '../Spinner/Spinner';
+import { useNavigate } from 'react-router-dom'; // for redirect after post method 
+import { useTranslation } from "react-i18next"; // for language switch (english or bosnian)
+import i18n from "i18next"; // for language switch (english or bosnian)
+import { initReactI18next } from "react-i18next"; // for language switch (english or bosnian)
+import translationEN from "../../locales/en/translation.json"; // for language switch (english or bosnian)
+import translationBHS from "../../locales/bhs/translation.json"; // for language switch (english or bosnian)
+import Spinner from '../Spinner/Spinner'; // spinner component 
 
-const resources = {
+const resources = { // from official docs resources for language Switch
   en: {
     translation: translationEN,
   },
@@ -23,7 +23,7 @@ const resources = {
   }
 }
 
-i18n.use(initReactI18next).init({
+i18n.use(initReactI18next).init({ // from official docs resources for language Switch
   resources,
   lng: "en",
   fallbackLng: "en",
@@ -35,16 +35,18 @@ i18n.use(initReactI18next).init({
 const CreateCert = () => {
 
   const [supplier, setSupplier] = useState('');
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [value, setValue] = useState('');
-  const [loading,setLoading] = useState(false)
+  const [startDate, setStartDate] = useState(new Date()); // date component for setting up endDate
+  const [endDate, setEndDate] = useState(new Date()); //date component for setting up endDate
+  const [value, setValue] = useState(''); // input field value 
+  const [loading,setLoading] = useState(false) // spinner 
   const navigate = useNavigate();
 
-  const { t } = useTranslation()
+  const { t } = useTranslation() /* from official docs resources for language Switch
+        whenever you see in this component for example {t("someText")}, that is for 
+        language switch, if you click for example bosnian, it will show that words in bosnian language */
 
 
-  const options = [
+  const options = [ // options for <select></select> tag 
     {
         id: 1,
         type: "CCC Certificate",
@@ -64,7 +66,8 @@ const CreateCert = () => {
 
 
 
-  const handleSaveCert = () =>{
+  const handleSaveCert = () =>{ // data with it's arguments which are going to be sent in mongoose Schema 
+                                // according to it's already created parameters and creating certificate
 
     const data = {
         supplier: supplier,
@@ -75,9 +78,9 @@ const CreateCert = () => {
     }
     setLoading(true)
     axios
-    .post('http://localhost:4000/Certificates', data)
+    .post('http://localhost:4000/Certificates', data) // post method for sending created object 
     .then(()=>{
-        navigate('/Certificates')
+        navigate('/Certificates') // after it's sent, redirect automaticaly to displaying all certificates components
         setLoading(false)
     })
     .catch((error)=>{

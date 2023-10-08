@@ -1,15 +1,15 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"; // for language switch (english or bosnian)
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = () => { // from official docs resources for language Switch
   const { i18n } = useTranslation();
 
-  const handleLanguageChange = (e) => {
+  const handleLanguageChange = (e) => { // from official docs resources for language Switch 
     const newLang = e.target.value;
     i18n.changeLanguage(newLang);
   };
 
-  const { t } = useTranslation();
+  const { t } = useTranslation(); // from official docs resources for language Switch
 
   return (
     <select value={i18n.language} onChange={handleLanguageChange}>
