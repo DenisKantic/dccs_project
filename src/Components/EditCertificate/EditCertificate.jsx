@@ -81,13 +81,6 @@ const EditCertificate = () => {
     <div className='flex flex-2'>
         <Header />
         <main  className='h-screen w-full p-10'>
-        <Link to='/Certificates'>
-        <BsArrowLeftSquareFill  
-        title='Go Back'
-        className='mt-10 text-[#3f9ac9] cursor-pointer' 
-        size={35}
-        />
-        </Link>
 
             <div className='mt-10 flex flex-col justify-center items-center'>
                 <h1 className='text-4xl'>Edit Certificate</h1>
