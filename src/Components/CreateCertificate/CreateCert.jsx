@@ -11,7 +11,8 @@ import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import translationEN from "../../locales/en/translation.json";
-import translationBHS from "../../locales/bhs/translation.json";;
+import translationBHS from "../../locales/bhs/translation.json";
+import Spinner from '../Spinner/Spinner';
 
 const resources = {
   en: {
@@ -37,6 +38,7 @@ const CreateCert = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [value, setValue] = useState('');
+  const [loading,setLoading] = useState(false)
   const navigate = useNavigate();
 
   const { t } = useTranslation()
@@ -71,13 +73,15 @@ const CreateCert = () => {
         validTo: endDate.toLocaleDateString("de-DE")  // converts given Date to string in European format dd/mm/yyyy
         
     }
-
+    setLoading(true)
     axios
     .post('http://localhost:4000/Certificates', data)
     .then(()=>{
         navigate('/Certificates')
+        setLoading(false)
     })
     .catch((error)=>{
+      setLoading(false);
         alert("Error, something is wrong. Please check your input field and try again");
     })
 
@@ -94,7 +98,7 @@ const CreateCert = () => {
             <div className='mt-10 flex flex-col justify-center items-center'>
                 <h1 className='text-4xl'>{t("create_certificate")}</h1>
 
-                
+                {loading ? <Spinner /> : ''}
                 <div className='w-[60%] pt-10'>
 
                 <div className='w-full mb-4'>

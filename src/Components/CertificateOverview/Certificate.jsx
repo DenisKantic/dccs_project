@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import translationEN from "../../locales/en/translation.json";
-import translationBHS from "../../locales/bhs/translation.json";;
+import translationBHS from "../../locales/bhs/translation.json";
 
 const resources = {
   en: {

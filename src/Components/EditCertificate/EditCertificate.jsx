@@ -11,7 +11,8 @@ import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import translationEN from "../../locales/en/translation.json";
-import translationBHS from "../../locales/bhs/translation.json";;
+import translationBHS from "../../locales/bhs/translation.json";
+import Spinner from '../Spinner/Spinner';
 
 const resources = {
   en: {
@@ -34,6 +35,7 @@ i18n.use(initReactI18next).init({
 const EditCertificate = () => { 
 
     const { t } = useTranslation();
+    const [loading,setLoading] = useState(false);
     const [supplier, setSupplier] = useState('');
     const [validFrom, setValidFrom] = useState(new Date());
     const [validTo, setValidTo] = useState(new Date());
@@ -46,6 +48,7 @@ const EditCertificate = () => {
     const { id } = useParams();
 
     useEffect(()=>{
+      setLoading(true)
         axios
         .get(`http://localhost:4000/Certificates/${id}`)
         .then((res)=>{
@@ -53,8 +56,10 @@ const EditCertificate = () => {
           setCertificateType(res.data.certificateType)
           setValidFrom(res.data.validFrom)
           setValidTo(res.data.validTo)
+          setLoading(false)
         })
         .catch((error)=>{
+          setLoading(false)
           console.log(error);
         })
       },[])
@@ -68,13 +73,16 @@ const EditCertificate = () => {
             validTo: endDate.toLocaleDateString("de-DE")
         }
 
+        setLoading(true)
         axios
         .put(`http://localhost:4000/Certificates/${id}`, data)
         .then(()=>{
+            setLoading(false)
             console.log("edited successfuly")
             navigate('/Certificates')
         })
         .catch((error)=>{
+          setLoading(false)
             alert("Error occured. Please contact IT support")
             console.log(error);
         })
@@ -107,7 +115,7 @@ const EditCertificate = () => {
             <div className='mt-10 flex flex-col justify-center items-center'>
                 <h1 className='text-4xl'>{t("edit_certificate")}</h1>
 
-                
+                {loading ? <Spinner /> : ' '}
                 <div className='w-[60%] pt-10'>
 
                 <div className='w-full mb-4'>
