@@ -48,10 +48,6 @@ const CreateCert = () => {
         
     }
 
-    const getSupplier = () =>{
-
-    }
-
     axios
     .post('http://localhost:4000/Certificates', data)
     .then(()=>{

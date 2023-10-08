@@ -80,8 +80,11 @@ router.put('/:id', async (req,res)=>{
         const result = await CertModel.findByIdAndUpdate(id, req.body)
 
         if(!result){
-            return res.status(404).json({message: 'Certificate updated successfully'})
+            return res.status(404).json({message: 'Certificate not found'})
         }
+
+        return  res.sendStatus(200),console.log("success")
+
     } catch (error){
         console.log(error)
         res.status(500).send({message: error.message})

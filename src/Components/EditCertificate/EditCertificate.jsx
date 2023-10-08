@@ -13,9 +13,9 @@ const EditCertificate = () => {
 
 
     const [supplier, setSupplier] = useState('');
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-    const [value, setValue] = useState('');
+    const [validFrom, setValidFrom] = useState(new Date());
+    const [validTo, setValidTo] = useState(new Date());
+    const [certificateType, setCertificateType] = useState('');
     const navigate = useNavigate();
 
     const { id } = useParams();
@@ -25,10 +25,10 @@ const EditCertificate = () => {
         .get(`http://localhost:4000/Certificates/${id}`)
         .then((res)=>{
           setSupplier(res.data.supplier)
-          setValue(res.data.value)
-          setStartDate(res.data.validFrom)
-          setEndDate(res.data.ValidTo)
-          console.log(res.data.data)
+          setCertificateType(res.data.certificateType)
+          setValidFrom(res.data.validFrom)
+          setValidTo(res.data.validTo)
+          console.log("Option",res.data.validTo)
         })
         .catch((error)=>{
           console.log(error);
@@ -38,10 +38,10 @@ const EditCertificate = () => {
       const handleEditCertificate = () =>{
         
         const data = {
-            supplier: supplier,
-            value: value,
-            startDate: startDate,
-            endDate: endDate
+            supplier,
+            certificateType,
+            validFrom,
+            validTo
         }
 
         axios
@@ -53,6 +53,7 @@ const EditCertificate = () => {
         .catch((error)=>{
             alert("Error occured. Please contact IT support")
             console.log(error);
+            console.log("this data is sent",data)
         })
       }
 
@@ -109,14 +110,14 @@ const EditCertificate = () => {
 
                     <div className='flex flex-col mt-10'>
                         <label htmlFor="certType">Certificate Type</label>
-                        <select className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]' onClick={(e)=>setValue(e.target.value)}>
+                        <select className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]' onClick={(e)=>setCertificateType(e.target.value)}>
                             <option disabled>Choose your type</option>
                             {options.map((option)=>{
                                 return (
                                     <option key={option.id} value={option.value}>{option.value}</option>
                                 )
                             })}
-                            {console.log(value)}
+                            {console.log()}
                         </select>
                     </div>
 
