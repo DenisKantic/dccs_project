@@ -1,0 +1,22 @@
+{
+    "supplier": "Supplier",
+    "certificate_type": "Certificate Type",
+    "valid_from": "Valid from",
+    "valid_to": "Valid to",
+    "edit_certificate": "Edit Certificate",
+    "create_certificate": "Create Certificate",
+    "certificate_overview": "Certificate Overview",
+    "cancel": "Cancel",
+    "previous_selected": "Previously selected was: ",
+    "previous_option": "Previously selected was: ",
+    "en": "English",
+    "bhs": "Bosnian",
+    "language": "Language",
+    "user": "User",
+    "edit": "Edit",
+    "delete": "Delete",
+    "delete_msg": "Are you sure you want to delete",
+    "yes": "Yes",
+    "ml": "Machine Learning",
+    "example": "Example"
+}

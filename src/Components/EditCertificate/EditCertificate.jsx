@@ -8,10 +8,33 @@ import {BiSearch} from 'react-icons/bi';
 import {IoClose} from 'react-icons/io5';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import translationEN from "../../locales/en/translation.json";
+import translationBHS from "../../locales/bhs/translation.json";;
+
+const resources = {
+  en: {
+    translation: translationEN,
+  },
+  bhs: {
+    translation: translationBHS,
+  }
+}
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "en",
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 const EditCertificate = () => { 
 
-
+    const { t } = useTranslation();
     const [supplier, setSupplier] = useState('');
     const [validFrom, setValidFrom] = useState(new Date());
     const [validTo, setValidTo] = useState(new Date());
@@ -81,22 +104,15 @@ const EditCertificate = () => {
     <div className='flex flex-2'>
         <Header />
         <main  className='h-screen w-full p-10'>
-        <Link to='/Certificates'>
-        <BsArrowLeftSquareFill  
-        title='Go Back'
-        className='mt-10 text-[#3f9ac9] cursor-pointer' 
-        size={35}
-        />
-        </Link>
 
             <div className='mt-10 flex flex-col justify-center items-center'>
-                <h1>Create Certification</h1>
+                <h1 className='text-4xl'>{t("edit_certificate")}</h1>
 
                 
                 <div className='w-[60%] pt-10'>
 
                 <div className='w-full mb-4'>
-                        <label>Supplier</label>
+                        <label>{t("supplier")}</label>
                         <div className='flex items-center h-[50px]'>
                             <input 
                             type="text" 
@@ -110,9 +126,9 @@ const EditCertificate = () => {
                     </div>
 
                     <div className='flex flex-col mt-10'>
-                        <label htmlFor="certType">Certificate Type</label>
+                        <label htmlFor="certType">{t("certificate_type")}</label>
                         <select className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]' onClick={(e)=>setCertificateType(e.target.value)}>
-                            <option disabled>Choose your type</option>
+                            <option disabled>{(`${t("previous_option")} ${certificateType}`)}</option>
                             {options.map((option)=>{
                                 return (
                                     <option key={option.id} value={option.value}>{option.value}</option>
@@ -123,9 +139,9 @@ const EditCertificate = () => {
                     </div>
                     
                     <div className='flex flex-col mt-10 w-full h-[50px]'>
-                        <label htmlFor="startDate">Valid from  
+                        <label htmlFor="startDate">{t("valid_from")} 
                         <br />
-                        {`Previously selected date was: ${validFrom}`}</label>
+                        {(`${t("previous_selected")} ${validFrom}`)}</label>
                         <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
@@ -136,9 +152,9 @@ const EditCertificate = () => {
                     {console.log("start Date is:", startDate, "validFRom is", validFrom)
                     }
 
-                    <label htmlFor='endDate' className='mt-10'>Valid to
+                    <label htmlFor='endDate' className='mt-10'>{t("valid_to")} 
                         <br />
-                        {`Previously selected date was: ${validTo}`}
+                        {(`${t("previous_selected")} ${validTo}`)}
                     </label>
                             <DatePicker
                             selected={endDate}
@@ -149,8 +165,8 @@ const EditCertificate = () => {
                             minDate={startDate}
                            />
                            <div className='mx-auto'>
-                    <button className='w-[300px] h-[60px] p-2 bg-[#3f9ac9] text-xl text-white mx-auto mt-10' onClick={handleEditCertificate}>Edit Certification</button>
-                    <Link to='/Certificates'><button className='w-[300px] h-[60px] p-2 bg-red-400 text-xl text-white mx-auto mt-10'>Cancel</button></Link>
+                    <button className='w-[300px] h-[60px] p-2 bg-[#3f9ac9] text-xl text-white mx-auto mt-10' onClick={handleEditCertificate}>{t("edit_certificate")}</button>
+                    <Link to='/Certificates'><button className='w-[300px] h-[60px] p-2 bg-red-400 text-xl text-white mx-auto mt-10'>{t("cancel")}</button></Link>
                     </div>
                            </div>
                   

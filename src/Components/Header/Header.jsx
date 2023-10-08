@@ -4,9 +4,34 @@ import {AiOutlineClose} from 'react-icons/ai';
 import {GiHamburgerMenu} from 'react-icons/gi';
 import {FaHome} from 'react-icons/fa';
 import {MdKeyboardArrowDown} from 'react-icons/md';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import translationEN from "../../locales/en/translation.json";
+import translationBHS from "../../locales/bhs/translation.json";;
+
+const resources = {
+  en: {
+    translation: translationEN,
+  },
+  bhs: {
+    translation: translationBHS,
+  }
+}
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "en",
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 const Header = () => {
 
+    const { t } =useTranslation();
     const [nav,setNav] = useState(false);
     const [subMenu,setSubMenu] = useState(false);
   return (
@@ -23,14 +48,11 @@ const Header = () => {
 
             {/* right part of the header, containing language dropdown and user"*/}
             <div className='flex items-center  flex-row mr-5'>
-                <h1 className='mr-3'>Language:</h1>
-                <select name="#" id="#" className='outline-none cursor-pointer p-1'>
-                    <option value="en">English</option>
-                    <option value="bhs">Bosnian</option>
-                </select>
+                <h1 className='mr-3'>{t("language")}:</h1>
+                <LanguageSwitcher />
 
                 <div className='pl-3 flex flex-row items-center mr-5'>
-                <h1 className='mr-3'>User:</h1>
+                <h1 className='mr-3'>{t("user")}:</h1>
                 <select name="#" id="#" className='outline-none cursor-pointer p-1 '>
                     <option value="user1">User 1</option>
                     <option value="user2">User 2</option>
@@ -58,7 +80,7 @@ const Header = () => {
                                    hover:bg-[#3f9ac9] hover:text-white cursor-pointer outline-none'
                                    onClick={()=>{setSubMenu(!subMenu)}} >
                                     <GiHamburgerMenu className='ml-4 text-[#193f66]' size={25}/>
-                                    <p className='text-lg pl-2 outline-none text-[#193f66]'>Machine Learning</p>
+                                    <p className='text-lg pl-2 outline-none text-[#193f66]'>{t("ml")}</p>
                                     <MdKeyboardArrowDown size={25} className='flex justify-center items-end w-[50px]'></MdKeyboardArrowDown>
                                     </li>
                 </ul>
@@ -67,16 +89,16 @@ const Header = () => {
                     <li className='hover:text-[#3f9ac9]'
                                    onClick={()=>{setNav(!nav)}}>
                                    <Link to="/Certificates">
-                                    Example 1
+                                    {t("example")} 1
                                     </Link>
                                     </li>
                     <li className='hover:text-[#3f9ac9]'
                                 onClick={()=>{setNav(!nav)}}>
-                                    Example 2
+                                    {t("example")} 2
                                     </li>
                     <li className='hover:text-[#3f9ac9]'
                                    onClick={()=>{setNav(!nav)}}>
-                                    Example 3
+                                    {t("example")} 3
                                     </li>
                 </ul>
 
@@ -87,6 +109,6 @@ const Header = () => {
             <Outlet></Outlet>
     </div>
   )
-}
+  }
 
-export default Header
+export default Header;
