@@ -15,8 +15,11 @@ const EditCertificate = () => {
     const [supplier, setSupplier] = useState('');
     const [validFrom, setValidFrom] = useState(new Date());
     const [validTo, setValidTo] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(validTo);
     const [certificateType, setCertificateType] = useState('');
     const navigate = useNavigate();
+
 
     const { id } = useParams();
 
@@ -28,7 +31,6 @@ const EditCertificate = () => {
           setCertificateType(res.data.certificateType)
           setValidFrom(res.data.validFrom)
           setValidTo(res.data.validTo)
-          console.log("Option",res.data.validTo)
         })
         .catch((error)=>{
           console.log(error);
@@ -36,12 +38,12 @@ const EditCertificate = () => {
       },[])
 
       const handleEditCertificate = () =>{
-        
+
         const data = {
             supplier,
             certificateType,
-            validFrom,
-            validTo
+            validFrom: startDate.toLocaleDateString("de-DE"),
+            validTo: endDate.toLocaleDateString("de-DE")
         }
 
         axios
@@ -53,7 +55,6 @@ const EditCertificate = () => {
         .catch((error)=>{
             alert("Error occured. Please contact IT support")
             console.log(error);
-            console.log("this data is sent",data)
         })
       }
 
@@ -120,9 +121,39 @@ const EditCertificate = () => {
                             {console.log()}
                         </select>
                     </div>
+                    
+                    <div className='flex flex-col mt-10 w-full h-[50px]'>
+                        <label htmlFor="startDate">Valid from  
+                        <br />
+                        {`Previously selected date was: ${validFrom}`}</label>
+                        <DatePicker
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        selectsStart
+                        startDate={startDate}
+                        endDate={endDate}
+                    />
+                    {console.log("start Date is:", startDate, "validFRom is", validFrom)
+                    }
 
+                    <label htmlFor='endDate' className='mt-10'>Valid to
+                        <br />
+                        {`Previously selected date was: ${validTo}`}
+                    </label>
+                            <DatePicker
+                            selected={endDate}
+                            onChange={(date) => setEndDate(date)}
+                            selectsEnd
+                            startDate={startDate}
+                            endDate={endDate}
+                            minDate={startDate}
+                           />
+                           <div className='mx-auto'>
+                    <button className='w-[300px] h-[60px] p-2 bg-[#3f9ac9] text-xl text-white mx-auto mt-10' onClick={handleEditCertificate}>Edit Certification</button>
+                    <Link to='/Certificates'><button className='w-[300px] h-[60px] p-2 bg-red-400 text-xl text-white mx-auto mt-10'>Cancel</button></Link>
+                    </div>
+                           </div>
                   
-                    <button className='w-[300px] h-[60px] p-2 bg-green-300 mx-auto mt-10' onClick={handleEditCertificate}>Edit Certification</button>
                     </div>
                  </div>
 
