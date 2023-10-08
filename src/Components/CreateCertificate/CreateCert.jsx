@@ -126,7 +126,10 @@ const CreateCert = () => {
                             minDate={startDate}
                            />
 
-                    <button className='w-[300px] h-[60px] p-2 bg-green-300 mx-auto mt-10' onClick={handleSaveCert}>Create Certification</button>
+                    <div className='mx-auto'>
+                    <button className='w-[300px] h-[60px] p-2 bg-[#3f9ac9] text-xl text-white mx-auto mt-10' onClick={handleSaveCert}>Create Certification</button>
+                    <Link to='/Certificates'><button className='w-[300px] h-[60px] p-2 bg-red-400 text-xl text-white mx-auto mt-10'>Cancel</button></Link>
+                    </div>
                     </div>
                  </div>
             </div>
