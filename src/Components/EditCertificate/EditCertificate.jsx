@@ -90,7 +90,7 @@ const EditCertificate = () => {
         </Link>
 
             <div className='mt-10 flex flex-col justify-center items-center'>
-                <h1>Create Certification</h1>
+                <h1 className='text-4xl'>Edit Certificate</h1>
 
                 
                 <div className='w-[60%] pt-10'>
@@ -112,7 +112,7 @@ const EditCertificate = () => {
                     <div className='flex flex-col mt-10'>
                         <label htmlFor="certType">Certificate Type</label>
                         <select className='h-[50px] w-full p-2  border-[1px] border-[#c7c7c7]' onClick={(e)=>setCertificateType(e.target.value)}>
-                            <option disabled>Choose your type</option>
+                            <option disabled>Previously selected was {certificateType}</option>
                             {options.map((option)=>{
                                 return (
                                     <option key={option.id} value={option.value}>{option.value}</option>

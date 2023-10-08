@@ -75,7 +75,7 @@ const CreateCert = () => {
         </Link>
 
             <div className='mt-10 flex flex-col justify-center items-center'>
-                <h1>Create Certification</h1>
+                <h1 className='text-4xl'>Create Certification</h1>
 
                 
                 <div className='w-[60%] pt-10'>
