@@ -116,7 +116,7 @@ const EditCertificate = () => {
                         <div className='flex items-center h-[50px]'>
                             <input 
                             type="text" 
-                            className='w-full h-full border-[1px]' 
+                            className='w-full h-full border-[1px] p-2' 
                             value={supplier}
                             onChange={(e)=> setSupplier(e.target.value)}
                             />
@@ -148,6 +148,7 @@ const EditCertificate = () => {
                         selectsStart
                         startDate={startDate}
                         endDate={endDate}
+                        className='w-full border-[1px] h-[50px] p-2'
                     />
                     {console.log("start Date is:", startDate, "validFRom is", validFrom)
                     }
@@ -163,6 +164,7 @@ const EditCertificate = () => {
                             startDate={startDate}
                             endDate={endDate}
                             minDate={startDate}
+                            className='w-full border-[1px] h-[50px] p-2'
                            />
                            <div className='mx-auto'>
                     <button className='w-[300px] h-[60px] p-2 bg-[#3f9ac9] text-xl text-white mx-auto mt-10' onClick={handleEditCertificate}>{t("edit_certificate")}</button>

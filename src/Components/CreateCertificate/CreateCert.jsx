@@ -104,7 +104,7 @@ const CreateCert = () => {
                             <input 
                             type="text" 
                             value={supplier}
-                            className='w-full h-full border-[1px]' 
+                            className='w-full h-full border-[1px] p-2' 
                             onChange={(e)=> setSupplier(e.target.value)}
                             />
                             <button className='h-full w-[50px] box-border bg-slate-100 border-[1px] cursor-pointer flex justify-center items-center'><BiSearch size={25}/></button>
@@ -133,6 +133,7 @@ const CreateCert = () => {
                         selectsStart
                         startDate={startDate}
                         endDate={endDate}
+                        className='w-full border-[1px] h-[50px] p-2'
                     />
 
                     <label htmlFor='endDate' className='mt-10'>{t("valid_to")}</label>
@@ -143,6 +144,7 @@ const CreateCert = () => {
                             startDate={startDate}
                             endDate={endDate}
                             minDate={startDate}
+                            className='w-full border-[1px] h-[50px] p-2'
                            />
 
                     <div className='mx-auto'>
