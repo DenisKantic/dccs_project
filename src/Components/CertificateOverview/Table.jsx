@@ -8,7 +8,8 @@ import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import translationEN from "../../locales/en/translation.json";
-import translationBHS from "../../locales/bhs/translation.json";;
+import translationBHS from "../../locales/bhs/translation.json";
+import Spinner from '../Spinner/Spinner';
 
 const resources = {
   en: {
@@ -46,15 +47,19 @@ const Table = () => {
 
     const { t } = useTranslation()
     const [cert,setCert] = useState([]) // for storing data from .get request and for displaying it 
+    const [loading,setLoading] = useState(false)
 
     useEffect(()=>{
+      setLoading(true);
       axios
       .get('http://localhost:4000/Certificates')
       .then((res)=>{
         setCert(res.data.data);
         console.log(res.data.data)
+        setLoading(false)
       })
       .catch((error)=>{
+        setLoading(false)
         console.log(error);
       })
     },[])
@@ -64,6 +69,7 @@ const Table = () => {
         <Link to="/Certificates/CreateCertification"> {/*redirect to CreateCertificaton component for creating new Certificate*/}
         <button className='w-[180px] h-[40px] mb-5 bg-[#c2cc38] text-white'>{t("create_certificate")}</button>
         </Link>
+        {loading ? <Spinner /> : ''}
 
         <table className='w-full text-left'>
           <thead>
